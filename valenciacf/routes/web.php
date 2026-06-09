@@ -6,6 +6,8 @@ use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\LesionController;
 use App\Http\Controllers\TituloController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EstadisticaPartidoController;
+
 
 // ── Rutas públicas ──────────────────────────────────────────
 Route::get('/', function () {
@@ -19,6 +21,7 @@ Route::get('/lesiones', [LesionController::class, 'index'])->name('lesiones.inde
 Route::get('/estadisticas', [EstadisticaController::class, 'index'])->name('estadisticas.index');
 Route::get('/estadisticas/comparar', [EstadisticaController::class, 'comparar'])->name('estadisticas.comparar');
 
+
 // ── Rutas de administración (auth + rol admin) ───────────────
 Route::middleware(['auth', 'esAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -27,6 +30,9 @@ Route::middleware(['auth', 'esAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::resource('partidos', PartidoController::class)->except(['index', 'show']);
     Route::resource('lesiones', LesionController::class)->except(['index']);
     Route::resource('titulos', TituloController::class)->except(['index', 'show']);
+    Route::get('/partidos/{partido}/estadisticas', [EstadisticaPartidoController::class, 'edit']) ->name('admin.estadisticas.edit');
+    Route::put('/partidos/{partido}/estadisticas', [EstadisticaPartidoController::class, 'update']) ->name('admin.estadisticas.update');
+    
 });
 
 require __DIR__.'/auth.php';

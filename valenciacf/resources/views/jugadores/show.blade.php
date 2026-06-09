@@ -4,10 +4,12 @@
     <div class="col-md-3 text-center">
         @if($jugador->foto_url)
             <img src="{{ asset('storage/' . $jugador->foto_url) }}"
-                 class="rounded-circle img-fluid shadow mb-3" style="width:180px;height:180px;object-fit:cover;">
+                class="rounded-circle shadow mb-3"
+                style="width:160px;height:160px;object-fit:cover;object-position:top;border:4px solid #FF6600"
+                onerror="this.outerHTML='<div class=\'rounded-circle bg-dark d-flex align-items-center justify-content-center mx-auto mb-3\' style=\'width:160px;height:160px;font-size:4rem;border:4px solid #FF6600\'>⚽</div>'">
         @else
-            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-3"
-                 style="width:180px;height:180px;font-size:5rem;">👤</div>
+            <div class="rounded-circle bg-dark d-flex align-items-center justify-content-center mx-auto mb-3"
+                style="width:160px;height:160px;font-size:4rem;border:4px solid #FF6600">⚽</div>
         @endif
         <h2>{{ $jugador->nombre }}</h2>
         <span class="badge-dorsal d-inline-block mb-2">{{ $jugador->dorsal }}</span>

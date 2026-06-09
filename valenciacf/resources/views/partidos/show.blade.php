@@ -37,7 +37,7 @@
             <div class="col-auto px-4">
                 <div class="display-3 fw-bold"
                      style="color:{{ $partido->resultado === 'Victoria' ? '#198754' :
-                                     ($partido->resultado === 'Derrota' ? '#dc3545' : '#fd7e14') }}">
+                                   ($partido->resultado === 'Derrota' ? '#dc3545' : '#fd7e14') }}">
                     {{ $partido->goles_favor }} – {{ $partido->goles_contra }}
                 </div>
                 <div class="badge fs-6
@@ -55,9 +55,27 @@
     </div>
 </div>
 
+{{-- BOTÓN DE EDITAR ESTADÍSTICAS (AÑADIDO AQUÍ) --}}
+@auth @if(auth()->user()->rol === 'admin')
+<div class="d-flex gap-2 align-items-center">
+    <a href="{{ route('admin.estadisticas.edit', $partido) }}" class="btn btn-outline-primary btn-sm">
+        ✏️ Estadísticas
+    </a>
+    
+    <a href="{{ route('admin.partidos.edit', $partido) }}" class="btn btn-vcf btn-sm">Editar</a>
+    
+    <form method="POST" action="{{ route('admin.partidos.destroy', $partido) }}"
+          onsubmit="return confirm('¿Eliminar este partido y sus estadísticas?')">
+        @csrf @method('DELETE')
+        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+    </form>
+</div>
+@endif @endauth
+
 {{-- ESTADÍSTICAS INDIVIDUALES --}}
 <h4 class="mb-3">Estadísticas individuales</h4>
 @if($estadisticas->count())
+
 <div class="table-responsive">
 <table class="table table-striped table-hover align-middle">
     <thead>

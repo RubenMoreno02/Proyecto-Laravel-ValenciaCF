@@ -32,10 +32,11 @@
                 <div class="position-relative">
                     @if($jugador->foto_url)
                         <img src="{{ asset('storage/' . $jugador->foto_url) }}"
-                             class="card-img-top" style="height:180px;object-fit:cover;">
+                            class="jugador-avatar"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="jugador-avatar-placeholder" style="display:none">⚽</div>
                     @else
-                        <div class="card-img-top d-flex align-items-center justify-content-center bg-light"
-                             style="height:180px;font-size:4rem;">👤</div>
+                        <div class="jugador-avatar-placeholder">⚽</div>
                     @endif
                     <span class="badge-dorsal position-absolute top-0 end-0 m-2">{{ $jugador->dorsal }}</span>
                 </div>
