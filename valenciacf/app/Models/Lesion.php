@@ -10,6 +10,8 @@ class Lesion extends Model
         'fecha_estimada_vuelta', 'estado', 'observaciones'
     ];
 
+    protected $table = 'lesiones';
+
     protected $casts = [
         'fecha_inicio' => 'date',
         'fecha_estimada_vuelta' => 'date',
