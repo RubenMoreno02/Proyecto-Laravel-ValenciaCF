@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PartidoSeeder::class,
             EstadisticaSeeder::class,
             TituloSeeder::class,
+            LesionSeeder::class,
         ]);
     }
 }

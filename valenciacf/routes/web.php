@@ -7,9 +7,12 @@ use App\Http\Controllers\LesionController;
 use App\Http\Controllers\TituloController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EstadisticaPartidoController;
+use App\Http\Controllers\ClasificacionController;
+use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\HistoriaController;
 
 
-// ── Rutas públicas ──────────────────────────────────────────
+// ── Rutas públicas
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -22,7 +25,7 @@ Route::get('/estadisticas', [EstadisticaController::class, 'index'])->name('esta
 Route::get('/estadisticas/comparar', [EstadisticaController::class, 'comparar'])->name('estadisticas.comparar');
 
 
-// ── Rutas de administración (auth + rol admin) ───────────────
+// ── Rutas de administración
 Route::middleware(['auth', 'esAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -34,5 +37,14 @@ Route::middleware(['auth', 'esAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::put('/partidos/{partido}/estadisticas', [EstadisticaPartidoController::class, 'update']) ->name('admin.estadisticas.update');
     
 });
+
+
+// ── Rutas adicionales
+Route::get('/clasificacion', [ClasificacionController::class, 'index'])->name('clasificacion.index');
+Route::get('/historia', [HistoriaController::class, 'index'])->name('historia.index');
+
+Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias.index');
+Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticias.show');
+
 
 require __DIR__.'/auth.php';

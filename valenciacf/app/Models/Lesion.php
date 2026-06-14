@@ -5,9 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesion extends Model
 {
+    // Se actualiza esta lista con los nuevos campos añadidos
     protected $fillable = [
-        'jugador_id', 'tipo_lesion', 'fecha_inicio',
-        'fecha_estimada_vuelta', 'estado', 'observaciones'
+        'jugador_id', 'tipo_lesion', 'parte_cuerpo', 'fecha_inicio',
+        'fecha_estimada_vuelta', 'dias_estimados', 'estado', 'observaciones'
     ];
 
     protected $table = 'lesiones';

@@ -10,7 +10,7 @@ class EstadisticaPartido extends Model
     protected $fillable = [
         'jugador_id', 'partido_id', 'minutos_jugados', 'goles',
         'asistencias', 'amarillas', 'rojas', 'faltas_cometidas',
-        'faltas_recibidas', 'portero_imbatido', 'titular'
+        'faltas_recibidas', 'portero_imbatido', 'titular', 'mvp'
     ];
 
     public function jugador()
@@ -22,4 +22,5 @@ class EstadisticaPartido extends Model
     {
         return $this->belongsTo(Partido::class);
     }
+    
 }
